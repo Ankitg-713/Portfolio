@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: font1;
+    src: url(/fonts/Lausanne-300.woff2);
+}
+
+@font-face {
+    font-family: font2;
+    src: url(/fonts/Lausanne-500.woff2);
+}
+@font-face {
+    font-family: font3;
+    src: url(/fonts/NeueMetanaNext-SemiBold.otf);
+}
+
+@font-face {
+    font-family: font4;
+    src: url(/fonts/OffBitTrial-DotBold.otf);
+}
+@font-face {
+    font-family: font5;
+    src: url(/fonts/EagleHorizonP.ttf);
+}
+
+/* body {
+    overflow-x: hidden;
+} */
+
+/* Smooth scrolling optimizations */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Performance optimizations for animations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize ScrollTrigger pinned elements */
+[data-scroll-trigger] {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.text-orange-outline {
+  color: transparent;                        /* No fill */
+  -webkit-text-stroke: 2px #D3FD50;          /* Orange outline #ff7a00 #D3FD50 */
+}
+
+.moveX{
+    animation-name: moveAnimation;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.moveLink{
+    opacity: 0;
+    transition: all ease 0.3s;
+}
+
+.link:hover .moveLink{
+    opacity: 1;
+}
+@keyframes moveAnimation {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
