@@ -5,7 +5,7 @@ import AboutMe from "./pages/AboutMe";
 import Contact from "./pages/Contact";
 import { Link, Route, Routes } from "react-router-dom";
 import Navbar from './components/Navigation/Navbar';
-import FullscreenNav from './components/Navigation/FullscreenNav';
+import FullscreenNav from './components/Navigation/FullScreenNav';
 
 
 const App = () => {
