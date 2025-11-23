@@ -368,8 +368,8 @@
 
 // FullscreenNav.jsx
 import React, { useContext, useRef } from "react";
-import img3 from "../../assets/PortfolioImage3.JPG";
-import img5 from "../../assets/PortfolioImage5.JPG";
+import img3 from "../../assets/PortfolioImage3.jpg";
+import img5 from "../../assets/PortfolioImage5.jpg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { NavbarContext } from "../../context/NavContext";

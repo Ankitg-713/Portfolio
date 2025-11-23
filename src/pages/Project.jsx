@@ -3,7 +3,7 @@ import ProjectCard from '../components/projects/ProjectCard'
 import img1 from "../assets/Project1.jpg";
 import img2 from "../assets/Project2.jpg";
 import img3 from "../assets/Project3.jpg";
-import img4 from "../assets/Upcoming2.JPG";
+import img4 from "../assets/Upcoming2.jpg";
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
