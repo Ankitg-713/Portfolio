@@ -145,7 +145,7 @@ const FullscreenNav = memo(() => {
           </div>
         </div>
 
-        <div className="lg:py-25 py-50">
+        <div className="lg:py-25 py-30">
           <NavLinkItem
             to="/projects"
             label="Projects"

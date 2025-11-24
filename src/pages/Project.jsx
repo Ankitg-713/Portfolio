@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import ProjectCard from '../components/projects/ProjectCard'
 import img1 from "../assets/Project1.jpg";
 import img2 from "../assets/Project2.jpg";
@@ -176,22 +176,57 @@ const Project = () => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.hero', {
-        height: '100px',
-        stagger: {
-          amount: 0.15
-        },
-        force3D: true,
-        scrollTrigger: {
-          trigger: '.lol',
-          start: 'top 100%',
-          end: 'top -150%',
-          scrub: 1,
-          anticipatePin: 1,
-        }
-      });
+      const isMobile = window.innerWidth < 1024;
+      
+      if (isMobile) {
+        // On mobile, use a different approach - animate from a reasonable min-height
+        gsap.from('.hero', {
+          height: '250px',
+          stagger: {
+            amount: 0.15
+          },
+          force3D: true,
+          scrollTrigger: {
+            trigger: '.lol',
+            start: 'top 100%',
+            end: 'top -150%',
+            scrub: 1,
+            anticipatePin: 1,
+          }
+        });
+      } else {
+        // Desktop animation - original behavior
+        gsap.from('.hero', {
+          height: '100px',
+          stagger: {
+            amount: 0.15
+          },
+          force3D: true,
+          scrollTrigger: {
+            trigger: '.lol',
+            start: 'top 100%',
+            end: 'top -150%',
+            scrub: 1,
+            anticipatePin: 1,
+          }
+        });
+      }
     });
     return () => ctx.revert();
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
   }, [])
 
   return (
@@ -201,7 +236,7 @@ const Project = () => {
       </div>
       <div className='lg:-mt-15 -md:mt-10 -mt-6 lol'>
         {projects.map(function(projectPair, idx){
-          return <div key={idx} className='hero w-full lg:h-[500px] mb-2 flex lg:flex-row flex-col lg:gap-3 gap-2'>
+          return <div key={idx} className='hero w-full lg:h-[500px] min-h-[250px] mb-2 flex lg:flex-row flex-col lg:gap-3 gap-2'>
            <ProjectCard 
              image1={projectPair.image1} 
              image2={projectPair.image2} 

@@ -18,7 +18,7 @@ const ProjectCard = memo((props) => {
     return (
         <>
             <div 
-                className='group relative lg:w-1/2 h-full bg-green-800 hover:rounded-[55px] overflow-hidden transition-all duration-300 ease-in-out cursor-pointer'
+                className='group relative lg:w-1/2 w-full h-full bg-green-800 hover:rounded-[55px] overflow-hidden transition-all duration-300 ease-in-out cursor-pointer'
                 onClick={() => handleClick(props.image1, props.project1)}
             >
                 <img className='h-full w-full object-cover' src={props.image1} alt="" loading="lazy" decoding="async" />
@@ -27,7 +27,7 @@ const ProjectCard = memo((props) => {
                 </div>
             </div>
             <div 
-                className='group relative lg:w-1/2 h-full bg-green-800 hover:rounded-[55px] overflow-hidden transition-all duration-300 ease-in-out cursor-pointer'
+                className='group relative lg:w-1/2 w-full h-full bg-green-800 hover:rounded-[55px] overflow-hidden transition-all duration-300 ease-in-out cursor-pointer'
                 onClick={() => handleClick(props.image2, props.project2)}
             >
                 <img className='h-full w-full object-cover' src={props.image2} alt="" loading="lazy" decoding="async" />
