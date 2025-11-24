@@ -6,18 +6,48 @@ const Video = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    videoRef.current.playbackRate = 1.75; // Set speed
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playVideo = async () => {
+      try {
+        video.playbackRate = 1.75;
+        await video.play();
+      } catch (error) {
+        console.log('Video autoplay failed, trying to play:', error);
+        video.play().catch(err => {
+          console.log('Video play failed:', err);
+        });
+      }
+    };
+
+    const handleLoadedData = () => {
+      playVideo();
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', handleLoadedData);
+    }
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+    };
   }, []);
+
   return (
     <div className='h-full w-full'>
       <video
-      ref={videoRef}
-      src={homeVideo}
-      autoPlay
-      loop
-      muted
-      className="w-full h-full object-cover"
-    />
+        ref={videoRef}
+        src={homeVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="w-full h-full object-cover"
+      />
     </div>
   )
 }

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
-const HomeBottomText = () => {
+const HomeBottomText = memo(() => {
   return (
     <div>
-      <div className='flex items-center justify-center gap-4 lg:mb-0 mb-10'>
-        <div className='lg:text-[8vw] text-[10vw] font-[font4]'>I'm </div>
-        <div className='lg:text-[5vw] text-[7vw] font-[font5] mb-3 text-orange-outline font-black'>Ankit Kumar Gupta</div>
+      <div className='flex items-center justify-center gap-4 lg:mb-0 mb-10 flex-wrap'>
+        <div className='lg:text-[6vw] text-[8vw] font-[font4] text-white'>I'm </div>
+        <div className='lg:text-[6vw] text-[8vw] font-[font4] text-[#D3FD50] font-black uppercase'>Ankit Kumar Gupta</div>
       </div>
       <div className='font-[font4] flex items-center justify-center gap-2 uppercase'>
         <Link to='/projects'>
@@ -23,6 +23,8 @@ const HomeBottomText = () => {
     </div>
 
   )
-}
+});
+
+HomeBottomText.displayName = 'HomeBottomText';
 
 export default HomeBottomText

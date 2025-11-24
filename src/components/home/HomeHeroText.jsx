@@ -3,7 +3,7 @@ import Video from "./Video";
 
 const HomeHeroText = () => {
   return (
-    <div className="font-[font4] text-center pt-5 px-3 lg:mt-0 md:mt-[35vh] mt-[50vh] uppercase font-extrabold">
+    <div className="font-[font4] text-center pt-5 px-3 lg:mt-0 md:mt-[35vh] mt-[20vh] uppercase font-extrabold">
       <div className="lg:text-[7vw] text-[9vw] lg:leading-[6vw] leading-[9vw] justify-center flex items-center">
         Full-Stack
       </div>

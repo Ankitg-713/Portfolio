@@ -3,29 +3,31 @@
 @font-face {
     font-family: font1;
     src: url(/fonts/Lausanne-300.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: font2;
     src: url(/fonts/Lausanne-500.woff2);
+    font-display: swap;
 }
 @font-face {
     font-family: font3;
     src: url(/fonts/NeueMetanaNext-SemiBold.otf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: font4;
     src: url(/fonts/OffBitTrial-DotBold.otf);
+    font-display: swap;
 }
 @font-face {
     font-family: font5;
     src: url(/fonts/EagleHorizonP.ttf);
+    font-display: swap;
 }
 
-/* body {
-    overflow-x: hidden;
-} */
 
 /* Smooth scrolling optimizations */
 html {
@@ -44,17 +46,34 @@ html {
     transform: translateZ(0);
 }
 
+/* GPU acceleration for animated elements */
+.stairing,
+.stair,
+.link,
+.navlink,
+.crossbtn {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Optimize transitions for mobile */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 .text-orange-outline {
   color: transparent;                        /* No fill */
   -webkit-text-stroke: 2px #D3FD50;          /* Orange outline #ff7a00 #D3FD50 */
 }
 
-.moveX{
-    animation-name: moveAnimation;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
 .moveLink{
     opacity: 0;
     transition: all ease 0.3s;
@@ -62,12 +81,4 @@ html {
 
 .link:hover .moveLink{
     opacity: 1;
-}
-@keyframes moveAnimation {
-    from{
-        transform: translateX(0);
-    }
-    to{
-        transform: translateX(-100%);
-    }
 }

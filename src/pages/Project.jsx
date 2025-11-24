@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import ProjectCard from '../components/projects/ProjectCard'
 import img1 from "../assets/Project1.jpg";
 import img2 from "../assets/Project2.jpg";
 import img3 from "../assets/Project3.jpg";
 import img4 from "../assets/Upcoming2.jpg";
+import img5 from "../assets/Project4.jpg";
+
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
-import SkillsSection from "../components/aboutme/SkillsSection";
 
 const Project = () => {
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       image1: img1,
       project1: {
@@ -77,8 +78,34 @@ const Project = () => {
       }
     },
     {
-      image1: img2,
+      image1: img5,
       project1: {
+        id: 4,
+        title: "Golang Rate Limiter API",
+        description: [
+          "A production-ready Rate Limiter API built using Go (Golang) to control and manage the number of requests per user.",
+          "Implements IP-based tracking, concurrency-safe request handling, and time-based reset logic."
+        ],
+        technologies: [
+          "Go (Golang)",
+          "net/http",
+          "Goroutines",
+          "Mutex",
+          "Middleware Architecture",
+          "Docker"
+        ],
+        features: [
+          "Allows 5 requests per minute per user",
+          "Tracks users using IP address",
+          "Uses goroutines + mutex for concurrency safety",
+          "Automatic reset of request count every minute",
+          "Clean reusable rate-limiter middleware"
+        ],
+        githubLink: "https://github.com/Ankitg-713/Go-Rate-Limiter",
+        liveLink: null
+      },
+      image2: img2,
+      project2: {
         id: 3,
         title: "BrainVita - Quiz Software",
         description: [
@@ -100,24 +127,6 @@ const Project = () => {
           "Custom quiz creation for any user",
           "Database management with MS Access",
           "Interactive quiz game interface"
-        ],
-        githubLink: null,
-        liveLink: null
-      },
-      image2: img4,
-      project2: {
-        id: 4,
-        title: "Project 4",
-        description: [
-          "This is a placeholder for your fourth project. Add detailed description here."
-        ],
-        technologies: [
-          "Technology 1",
-          "Technology 2"
-        ],
-        features: [
-          "Feature 1",
-          "Feature 2"
         ],
         githubLink: null,
         liveLink: null
@@ -161,24 +170,29 @@ const Project = () => {
         liveLink: null
       }
     }
-  ]
+  ], []);
 
   gsap.registerPlugin(ScrollTrigger)
 
-  useGSAP(function () {
-    gsap.from('.hero', {
-      height: '100px',
-      stagger: {
-        amount: 0.2
-      },
-      scrollTrigger: {
-        trigger: '.lol',
-        start: 'top 100%',
-        end: 'top -150%',
-        scrub: true
-      }
-    })
-  })
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.hero', {
+        height: '100px',
+        stagger: {
+          amount: 0.15
+        },
+        force3D: true,
+        scrollTrigger: {
+          trigger: '.lol',
+          start: 'top 100%',
+          end: 'top -150%',
+          scrub: 1,
+          anticipatePin: 1,
+        }
+      });
+    });
+    return () => ctx.revert();
+  }, [])
 
   return (
     <div className='lg:p-4 p-2'>

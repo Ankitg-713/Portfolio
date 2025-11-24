@@ -10,34 +10,44 @@ const Stairs = (props) => {
 
   useGSAP(
     function () {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { force3D: true } });
 
       tl.to(stairParentRef.current, {
         display: "block",
       });
-      tl.from(".stair", {
-        height: 0,
+      tl.set(".stair", { scaleY: 0, transformOrigin: "top" });
+      tl.to(".stair", {
+        scaleY: 1,
+        duration: 0.3,
         stagger: {
-          amount: -0.25,
+          amount: -0.15,
         },
+        ease: "power2.out",
+        force3D: true,
       });
       tl.to(".stair", {
         y: "100%",
+        duration: 0.4,
         stagger: {
-          amount: -0.25,
+          amount: -0.15,
         },
+        ease: "power2.in",
+        force3D: true,
       });
       tl.to(stairParentRef.current, {
         display: "none",
       });
-      tl.to(".stair", {
+      tl.set(".stair", {
         y: "0%",
+        scaleY: 1,
       });
-      gsap.from(pageRef.current,{
-        opacity:0,
-        delay:1,
-        // scale:5
-      })
+      gsap.from(pageRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        delay: 0.7,
+        ease: "power2.out",
+        force3D: true,
+      });
     },
     [currentPath]
   );
@@ -46,11 +56,11 @@ const Stairs = (props) => {
     <div className="">
       <div ref={stairParentRef} className="h-screen w-full fixed z-20 top-0 ">
         <div className="h-full w-full fixed flex">
-          <div className="stair h-full w-1/5 bg-black"></div>
-          <div className="stair h-full w-1/5 bg-black"></div>
-          <div className="stair h-full w-1/5 bg-black"></div>
-          <div className="stair h-full w-1/5 bg-black"></div>
-          <div className="stair h-full w-1/5 bg-black"></div>
+          <div className="stair h-full w-1/5 bg-black" style={{ willChange: 'transform' }}></div>
+          <div className="stair h-full w-1/5 bg-black" style={{ willChange: 'transform' }}></div>
+          <div className="stair h-full w-1/5 bg-black" style={{ willChange: 'transform' }}></div>
+          <div className="stair h-full w-1/5 bg-black" style={{ willChange: 'transform' }}></div>
+          <div className="stair h-full w-1/5 bg-black" style={{ willChange: 'transform' }}></div>
         </div>
       </div>
       <div ref={pageRef}>

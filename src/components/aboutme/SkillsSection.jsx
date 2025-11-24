@@ -40,9 +40,10 @@ const SkillsSection = () => {
                 gsap.to(cardsRef.current, {
                     opacity: 1,
                     y: 0,
-                    duration: 0.3,
-                    stagger: 0.03,
+                    duration: 0.25,
+                    stagger: 0.02,
                     ease: "power2.out",
+                    force3D: true,
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",

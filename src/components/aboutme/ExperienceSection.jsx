@@ -42,8 +42,9 @@ const ExperienceSection = () => {
             gsap.to(cardRef.current, {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.4,
                 ease: "power2.out",
+                force3D: true,
                 scrollTrigger: {
                     trigger: cardRef.current,
                     start: "top 85%",
@@ -57,9 +58,10 @@ const ExperienceSection = () => {
                 gsap.to(itemsRef.current, {
                     opacity: 1,
                     x: 0,
-                    duration: 0.4,
-                    stagger: 0.05,
+                    duration: 0.3,
+                    stagger: 0.03,
                     ease: "power2.out",
+                    force3D: true,
                     scrollTrigger: {
                         trigger: cardRef.current,
                         start: "top 85%",

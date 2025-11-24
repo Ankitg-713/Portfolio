@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 const ProjectDetails = () => {
@@ -9,13 +9,17 @@ const ProjectDetails = () => {
   const project = location.state?.project
   const clickedImage = location.state?.clickedImage
 
+  const handleBackClick = useCallback(() => {
+    navigate('/projects');
+  }, [navigate]);
+
   if (!project) {
     return (
       <div className='min-h-screen flex items-center justify-center text-black bg-white p-4'>
         <div className='text-center'>
           <h2 className='font-[font1] text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 text-black'>Project Not Found</h2>
           <button 
-            onClick={() => navigate('/projects')}
+            onClick={handleBackClick}
             className='border-2 border-black text-black px-4 md:px-6 py-2 rounded-full hover:border-[#D3FD50] hover:text-[#D3FD50] transition-all text-sm md:text-base'
           >
             Back to Projects
@@ -30,7 +34,7 @@ const ProjectDetails = () => {
       <div className='max-w-6xl mx-auto lg:pt-[10vh] md:pt-[8vh] pt-[5vh]'>
         {/* Back Button */}
         <button 
-          onClick={() => navigate('/projects')}
+          onClick={handleBackClick}
           className='mb-6 md:mb-8 border-2 border-black text-black px-4 md:px-6 py-2 rounded-full hover:border-[#D3FD50] hover:text-[#D3FD50] transition-all uppercase font-[font1] text-sm md:text-base'
         >
           ← Back to Projects
@@ -47,7 +51,9 @@ const ProjectDetails = () => {
             <img 
               className='h-full w-full object-cover' 
               src={clickedImage || project.image1} 
-              alt={project.title} 
+              alt={project.title}
+              loading="eager"
+              decoding="async"
             />
           </div>
         </div>
